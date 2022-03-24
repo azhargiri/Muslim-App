@@ -11,8 +11,7 @@ class NetworkConnectivity {
         {
             NetworkInfo netInfos = connectivityManager.getActiveNetworkInfo();
             if(netInfos != null)
-                if(netInfos.isConnected())
-                    return true;
+                return netInfos.isConnected();
         }
         return false;
     }

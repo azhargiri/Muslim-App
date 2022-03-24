@@ -6,11 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.InterstitialAd;
 
 public class RestOfDikr extends AppCompatActivity {
-    private InterstitialAd mInterstitialAd;
+//    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,19 +18,19 @@ public class RestOfDikr extends AppCompatActivity {
         int thm=AboutUs.getCurrentTheme(prefs);
         AboutUs.setCurrentTheme(this, thm);
 
-        mInterstitialAd = new InterstitialAd(this);
-        // TO RE-SET
-        //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); //test
-        mInterstitialAd.setAdUnitId(getString(R.string.Interstitial_RestOfDikr));
-        mInterstitialAd.loadAd(new AdRequest.Builder()
-                .build());
-        mInterstitialAd.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdLoaded() {
-                mInterstitialAd.show();
-                super.onAdLoaded();
-            }
-        });
+//        mInterstitialAd = new InterstitialAd(this);
+//        // TO RE-SET
+//        //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); //test
+//        mInterstitialAd.setAdUnitId(getString(R.string.Interstitial_RestOfDikr));
+//        mInterstitialAd.loadAd(new AdRequest.Builder()
+//                .build());
+//        mInterstitialAd.setAdListener(new com.google.android.gms.ads.AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                mInterstitialAd.show();
+//                super.onAdLoaded();
+//            }
+//        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rest_of_dikr);

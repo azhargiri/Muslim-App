@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class AdkarAdapter extends RecyclerView.Adapter<AdkarAdapter.AdkarViewHolder> {
-    private ArrayList<Adkar> mAdkarArrayList;
+    private final ArrayList<Adkar> mAdkarArrayList;
     public static class AdkarViewHolder extends RecyclerView.ViewHolder {
         public TextView mDouaa;
         public TextView mTimes;

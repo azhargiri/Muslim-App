@@ -11,8 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +23,7 @@ public class NamesOfAllah extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private TextView mTextView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private InterstitialAd mInterstitialAd;
+//    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +31,19 @@ public class NamesOfAllah extends AppCompatActivity {
         int thm=AboutUs.getCurrentTheme(prefs);
         AboutUs.setCurrentTheme(this, thm);
 
-        mInterstitialAd = new InterstitialAd(this);
-        // TO RE-SET
-        //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); //test
-            mInterstitialAd.setAdUnitId(getString(R.string.Interstitial_Names99));
-        mInterstitialAd.loadAd(new AdRequest.Builder()
-                .build());
-        mInterstitialAd.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdLoaded() {
-                mInterstitialAd.show();
-                super.onAdLoaded();
-            }
-        });
+//        mInterstitialAd = new InterstitialAd(this);
+//        // TO RE-SET
+//        //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); //test
+//            mInterstitialAd.setAdUnitId(getString(R.string.Interstitial_Names99));
+//        mInterstitialAd.loadAd(new AdRequest.Builder()
+//                .build());
+//        mInterstitialAd.setAdListener(new com.google.android.gms.ads.AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                mInterstitialAd.show();
+//                super.onAdLoaded();
+//            }
+//        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_names_of_allah);

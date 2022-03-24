@@ -1,7 +1,7 @@
 package com.choubapp.muslimapp;
 
 public class ImageItem {
-    private String mImageUrl;
+    private final String mImageUrl;
 
     public ImageItem(String imageUrl) {
         mImageUrl = imageUrl;

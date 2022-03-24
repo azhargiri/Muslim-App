@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class Names99Adapter extends RecyclerView.Adapter<Names99Adapter.Names99ViewHolder> {
-    private ArrayList<Names99> mExampleList;
+    private final ArrayList<Names99> mExampleList;
     public static class Names99ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
         public Names99ViewHolder(View itemView) {

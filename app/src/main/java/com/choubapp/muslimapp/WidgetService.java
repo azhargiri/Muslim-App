@@ -29,8 +29,8 @@ public class WidgetService  extends RemoteViewsService {
     }
 
     class WidgetItemFactory implements RemoteViewsFactory {
-        private Context context;
-        private int appWidgetId;
+        private final Context context;
+        private final int appWidgetId;
         ArrayList<Adkar> AdkarWidgetList;
 
         WidgetItemFactory(Context context, Intent intent) {

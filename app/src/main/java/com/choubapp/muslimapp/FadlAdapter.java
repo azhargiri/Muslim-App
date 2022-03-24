@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class FadlAdapter extends RecyclerView.Adapter<FadlAdapter.FadlViewHolder> {
-    private ArrayList<Fadl> mFadlArrayList;
+    private final ArrayList<Fadl> mFadlArrayList;
     public static class FadlViewHolder extends RecyclerView.ViewHolder {
         public TextView mThought;
         public TextView mSaidby;

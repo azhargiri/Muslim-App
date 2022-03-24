@@ -20,9 +20,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+//import com.google.android.gms.ads.AdListener;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.AdView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
    // private ArrayList<String> mPrayerTimes,mRetrievedPrayerTimes;
     TextView mFajr,mDuhur,mAsr,mMaghrib,mIsha,mCity;
     ScrollView content;
-    private AdView mAdView;
+//    private AdView mAdView;
 
     //String PrayerCity = "kenitra";
 
@@ -63,32 +63,32 @@ public class MainActivity extends AppCompatActivity {
             LoadPreviousSalatData();
         }
 
-        mAdView = findViewById(R.id.adViewmain);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                Resources r = getResources();
-                int px = (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        50,
-                        r.getDisplayMetrics()
-                );
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT
-                );
-                content.setLayoutParams(params);
-                params.setMargins(0, 0, 0, px);
-            }
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                Log.d("onAdFailedToLoad", "This is why: "+errorCode);
-            }
-        });
+//        mAdView = findViewById(R.id.adViewmain);
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .build();
+//        mAdView.loadAd(adRequest);
+//        mAdView.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                // Code to be executed when an ad finishes loading.
+//                Resources r = getResources();
+//                int px = (int) TypedValue.applyDimension(
+//                        TypedValue.COMPLEX_UNIT_DIP,
+//                        50,
+//                        r.getDisplayMetrics()
+//                );
+//                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+//                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                        RelativeLayout.LayoutParams.WRAP_CONTENT
+//                );
+//                content.setLayoutParams(params);
+//                params.setMargins(0, 0, 0, px);
+//            }
+//            @Override
+//            public void onAdFailedToLoad(int errorCode) {
+//                Log.d("onAdFailedToLoad", "This is why: "+errorCode);
+//            }
+//        });
 
         }
 

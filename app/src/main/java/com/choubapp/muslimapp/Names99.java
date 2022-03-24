@@ -1,7 +1,7 @@
 package com.choubapp.muslimapp;
 
 public class Names99 {
-    private String mText;
+    private final String mText;
     public Names99(String text) {
         mText = text;
     }

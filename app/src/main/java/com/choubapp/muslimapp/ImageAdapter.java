@@ -11,8 +11,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder>{
-    private Context mContext;
-    private ArrayList<ImageItem> mExampleList;
+    private final Context mContext;
+    private final ArrayList<ImageItem> mExampleList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {

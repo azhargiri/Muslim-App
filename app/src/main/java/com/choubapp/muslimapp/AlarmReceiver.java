@@ -19,7 +19,7 @@ import java.util.Random;
 import static com.choubapp.muslimapp.NotifsChannels.CHANNEL_1_ID;
 
 public class AlarmReceiver extends BroadcastReceiver {
-    private Random rng = new Random();
+    private final Random rng = new Random();
 
     @Override
     public void onReceive(Context context, Intent intent) {

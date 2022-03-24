@@ -381,5 +381,21 @@
     <string name="namesofAllah">Allah Names</string>
     <string name="namesofAllahHadith" translatable="false">"إِنَّ لِلَّهِ تِسْعَةً وَتِسْعِينَ اسْمًا مِائَةً إِلا وَاحِدًا مَنْ أَحْصَاهَا دَخَلَ الْجَنَّةَ".</string>
 
+    <!-- ads settings -->
+    <string name="AdAppID" translatable="false">GoSomewhere</string>
+    <string name="Home_Banner" translatable="false">anotherone</string>
+    <string name="Interstitial_SalatSettings" translatable="false">Salat Settings</string>
+    <string name="Interstitial_Qibla" translatable="false">Qibla</string>
+    <string name="Interstitial_Names99" translatable="false">99 Names</string>
+    <string name="Interstitial_Wallpapers" translatable="false">Wallpapers</string>
+    <string name="Interstitial_FadlAdkar" translatable="false">Fadl Adkar</string>
+    <string name="Interstitial_RestOfDikr" translatable="false">Rest of Dikr</string>
+    <string name="Interstitial_Gold" translatable="false">Gold</string>
+    <string name="Interstitial_Settings" translatable="false">Settings</string>
+    <string name="Interstitial_BacktohomefromSettings" translatable="false">Back to home</string>
+
+
+
+
 
 </resources>

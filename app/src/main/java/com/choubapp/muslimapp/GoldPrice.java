@@ -7,31 +7,31 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.InterstitialAd;
+//import com.google.android.gms.ads.MobileAds;
 
 public class GoldPrice extends AppCompatActivity {
     private WebView webView;
-    private InterstitialAd mInterstitialAd;
+//    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
 
-        mInterstitialAd = new InterstitialAd(this);
+//        mInterstitialAd = new InterstitialAd(this);
         // TO RE-SET
-       // mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); //test
-        mInterstitialAd.setAdUnitId(getString(R.string.Interstitial_Gold));
-        mInterstitialAd.loadAd(new AdRequest.Builder()
-                .build());
-        mInterstitialAd.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdLoaded() {
-                mInterstitialAd.show();
-                super.onAdLoaded();
-            }
-        });
+//       // mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); //test
+//        mInterstitialAd.setAdUnitId(getString(R.string.Interstitial_Gold));
+//        mInterstitialAd.loadAd(new AdRequest.Builder()
+//                .build());
+//        mInterstitialAd.setAdListener(new com.google.android.gms.ads.AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                mInterstitialAd.show();
+//                super.onAdLoaded();
+//            }
+//        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gold_price);

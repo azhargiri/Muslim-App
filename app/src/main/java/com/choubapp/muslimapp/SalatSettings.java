@@ -24,9 +24,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.InterstitialAd;
+//import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -48,7 +48,7 @@ public class SalatSettings extends AppCompatActivity {
     String mCity;
     TextView DisplayCity, FajrOff, DuhurOff, AsrOff, MaghribOff,IshaOff;
 
-    private InterstitialAd mInterstitialAd;
+//    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,20 +60,20 @@ public class SalatSettings extends AppCompatActivity {
 
 
         //--------ADS
-        mInterstitialAd = new InterstitialAd(this);
-        // TO RE-SET
-        mInterstitialAd.setAdUnitId(getString(R.string.Interstitial_SalatSettings)); //real
-        //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); //test
-
-        mInterstitialAd.loadAd(new AdRequest.Builder()
-                .build());
-        mInterstitialAd.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override
-            public void onAdLoaded() {
-                mInterstitialAd.show();
-                super.onAdLoaded();
-            }
-        });
+//        mInterstitialAd = new InterstitialAd(this);
+//        // TO RE-SET
+//        mInterstitialAd.setAdUnitId(getString(R.string.Interstitial_SalatSettings)); //real
+//        //mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); //test
+//
+//        mInterstitialAd.loadAd(new AdRequest.Builder()
+//                .build());
+//        mInterstitialAd.setAdListener(new com.google.android.gms.ads.AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                mInterstitialAd.show();
+//                super.onAdLoaded();
+//            }
+//        });
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         //getLastLocation();
@@ -226,7 +226,7 @@ public class SalatSettings extends AppCompatActivity {
                 Looper.myLooper()
         );
     }
-    private LocationCallback mLocationCallback = new LocationCallback() {
+    private final LocationCallback mLocationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
@@ -236,11 +236,8 @@ public class SalatSettings extends AppCompatActivity {
         }
     };
     private boolean checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        return false;
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
     private void requestPermissions() {
         ActivityCompat.requestPermissions(

@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.AdView;
 
 public class Misbaha extends AppCompatActivity {
     TextView showcounter;
     int count;
-    private AdView mAdView;
+//    private AdView mAdView;
 
 
     @Override
@@ -23,10 +23,10 @@ public class Misbaha extends AppCompatActivity {
         AboutUs.setCurrentTheme(this, thm);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_misbaha);
-        mAdView = findViewById(R.id.adViewww);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
+//        mAdView = findViewById(R.id.adViewww);
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .build();
+//        mAdView.loadAd(adRequest);
         SharedPreferences sp = getSharedPreferences("tallycounter", Activity.MODE_PRIVATE);
         int myIntValue = sp.getInt("counter", 0);
         showcounter=findViewById(R.id.counter_text);
