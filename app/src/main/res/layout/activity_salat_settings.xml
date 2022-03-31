@@ -50,61 +50,74 @@
             android:textSize="18sp"
             android:text="@string/location" />
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/changa_bold"
-        android:textSize="18sp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/manualcorr" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:onClick="setOffsetFajr"
-        android:background="@color/lightblue">
-        <TextView
-            android:id="@+id/fajrcorr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/changa_light"
-            android:layout_marginStart="10dp"
-            android:textSize="16sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:fontFamily="@font/changa_bold"
-            android:textSize="16sp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/fajr" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:onClick="setOffsetDhuhr"
-        android:background="@color/lightblue">
-        <TextView
-            android:id="@+id/duhurcorr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/changa_light"
-            android:layout_marginStart="10dp"
-            android:textSize="16sp" />
-        <TextView
+            android:text="@string/manualcorr"
+            android:textSize="18sp"
+            android:visibility="invisible" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/changa_bold"
-            android:textSize="16sp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/dohr" />
-    </LinearLayout>
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/lightblue"
+            android:onClick="setOffsetFajr"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/fajrcorr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/changa_light"
+                android:visibility="invisible"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/changa_bold"
+                android:text="@string/fajr"
+                android:textSize="16sp"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/lightblue"
+            android:onClick="setOffsetDhuhr"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/duhurcorr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/changa_light"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/changa_bold"
+                android:text="@string/dohr"
+                android:textSize="16sp"
+                android:visibility="invisible" />
+        </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,21 +125,26 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:onClick="setOffsetAsr"
-        android:background="@color/lightblue">
+        android:background="@color/lightblue"
+        android:visibility="invisible">
+
         <TextView
             android:id="@+id/asrcorr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/changa_light"
             android:layout_marginStart="10dp"
-            android:textSize="16sp" />
+            android:fontFamily="@font/changa_light"
+            android:textSize="16sp"
+            android:visibility="invisible" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/changa_bold"
-            android:textSize="16sp"
             android:layout_marginEnd="10dp"
-            android:text="@string/asr" />
+            android:fontFamily="@font/changa_bold"
+            android:text="@string/asr"
+            android:textSize="16sp"
+            android:visibility="invisible" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -135,7 +153,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:onClick="setOffsetMaghrib"
-        android:background="@color/lightblue">
+        android:background="@color/lightblue"
+        android:visibility="invisible">
         <TextView
             android:id="@+id/maghrebcorr"
             android:layout_width="wrap_content"
@@ -143,13 +162,15 @@
             android:fontFamily="@font/changa_light"
             android:layout_marginStart="10dp"
             android:textSize="16sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/changa_bold"
-            android:textSize="16sp"
             android:layout_marginEnd="10dp"
-            android:text="@string/maghrib" />
+            android:fontFamily="@font/changa_bold"
+            android:text="@string/maghrib"
+            android:textSize="16sp"
+            android:visibility="invisible" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -158,7 +179,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:onClick="setOffsetIsha"
-        android:background="@color/lightblue">
+        android:background="@color/lightblue"
+        android:visibility="invisible">
         <TextView
             android:id="@+id/ishacorr"
             android:layout_width="wrap_content"
@@ -166,13 +188,15 @@
             android:fontFamily="@font/changa_light"
             android:layout_marginStart="10dp"
             android:textSize="16sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/changa_bold"
-            android:textSize="16sp"
             android:layout_marginEnd="10dp"
-            android:text="@string/isha" />
+            android:fontFamily="@font/changa_bold"
+            android:text="@string/isha"
+            android:textSize="16sp"
+            android:visibility="invisible" />
     </LinearLayout>
     </TableLayout>
     </ScrollView>

@@ -50,6 +50,7 @@
     <string name="menu_set2">Accessories</string>
     <string name="menu_set3">Settings</string>
     <string name="adkar_sabah_massaa">Morning and Evening Prayers</string>
+    <string name="hijri_date" translatable="false">Hijri Date</string>
 
     <!--Rest of Dikr-->
     <string name="salatdikr">Prayer Dhikr</string>

@@ -24,18 +24,23 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
+
             <TextView
                 android:id="@+id/app_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
                 android:fontFamily="@font/changa_bold"
-                android:text="@string/app_name"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp"
                 android:shadowColor="@color/colorPrimary"
                 android:shadowDx="-2"
                 android:shadowDy="2"
-                android:shadowRadius="1"/>
+                android:shadowRadius="1"
+                android:singleLine="false"
+                android:soundEffectsEnabled="false"
+                android:text="@string/app_name"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                app:lineHeight="30dp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,25 +69,39 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/hijri_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/changa_light"
+                    android:text="@string/hijri_date"
+                    android:textAlignment="textEnd"
+                    android:textSize="14sp" />
+
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:id="@+id/refr"
                     android:onClick="SalatSettings"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="30dp"
                     android:src="@drawable/salat_settings"/>
+
                 <TextView
                     android:id="@+id/awkat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="25dp"
                     android:fontFamily="@font/changa_light"
                     android:text="@string/menu_prayertimes"
+                    android:textAlignment="gravity"
                     android:textSize="20sp" />
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_below="@+id/awkat"
                     android:src="@drawable/map"/>
                 <TextView
@@ -91,7 +110,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/awkat"
                     android:fontFamily="@font/changa_light"
-                    android:layout_marginTop="5dp"
                     android:layout_marginStart="40dp"
                     android:text="@string/city"
                     android:textSize="24sp" />

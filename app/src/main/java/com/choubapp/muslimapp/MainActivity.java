@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> NotifSalatMessages = new ArrayList<>();
    // private ArrayList<String> mPrayerTimes,mRetrievedPrayerTimes;
     TextView mFajr,mDuhur,mAsr,mMaghrib,mIsha,mCity;
+    TextView mHijriDate;
     ScrollView content;
 //    private AdView mAdView;
 
@@ -362,12 +363,13 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences salatpref = getSharedPreferences("lastprayertimes", MODE_PRIVATE);
         String GETPrayerCity =salatpref.getString("city","Rabat");
         String GETCountry =salatpref.getString("country","Morocco");
-        int fajroff =salatpref.getInt("fajroffset",0);
+        int fajroff =salatpref.getInt("fajroffset",8); // default fajaroffset +8
         int dhuhroff =salatpref.getInt("dhuhroffset",0);
         int asroff =salatpref.getInt("asroffset",0);
         int maghriboff =salatpref.getInt("maghriboffset",0);
         int ishaoff =salatpref.getInt("ishaoffset",0);
         String fajr,duhur,asr,maghrib,isha;
+        String hijri_weekday, hijri_day, hijri_month, hijri_year;
         Boolean Passed=false;
         @Override
         protected void onPreExecute() {
@@ -379,8 +381,9 @@ public class MainActivity extends AppCompatActivity {
             HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
             //String url = "https://api.pray.zone/v2/times/today.json?city="+GETPrayerCity;
-            String offsets = "&tune=0,"+(fajroff-6)+",0,"+(dhuhroff+5)+","+asroff+","+(maghriboff+5)+",0,"+ishaoff+",0" ;
-            String url ="http://api.aladhan.com/v1/timingsByCity?city="+GETPrayerCity+"&country="+GETCountry+"&method=3"+offsets;
+            String offsets = "&tune=0,"+(fajroff)+",0,"+(dhuhroff)+","+asroff+","+(maghriboff)+",0,"+ishaoff+",0" ;
+            String method = "1"; // University of Islamic Sciences, Karachi
+            String url ="http://api.aladhan.com/v1/timingsByCity?city="+GETPrayerCity+"&country="+GETCountry+"&method="+method+offsets;
             String jsonStr = sh.makeServiceCall(url);
             //Log.e("TAG", "Response from url: " + jsonStr);
             if (jsonStr != null) {
@@ -388,11 +391,18 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(jsonStr);
                     JSONObject data = jsonObj.getJSONObject("data");
                     JSONObject prayertimes = data.getJSONObject("timings");
+                    JSONObject date = data.getJSONObject("date");
+                    JSONObject hijri = date.getJSONObject("hijri");
                     fajr = prayertimes.getString("Fajr");
                     duhur = prayertimes.getString("Dhuhr");
                     asr = prayertimes.getString("Asr");
                     maghrib = prayertimes.getString("Maghrib");
                     isha = prayertimes.getString("Isha");
+
+                    hijri_day = hijri.getString("day");
+                    hijri_month = hijri.getJSONObject("month").getString("en");
+                    hijri_year = hijri.getString("year");
+                    hijri_weekday = hijri.getJSONObject("weekday").getString("en");
                     Passed =true;
                 } catch (final JSONException e) {
                     Log.e("TAG", "Json parsing error: " + e.getMessage());
@@ -440,6 +450,20 @@ public class MainActivity extends AppCompatActivity {
             mAsr.setText(asr);
             mMaghrib.setText(maghrib);
             mIsha.setText(isha);
+
+            StringBuilder hijriDateBuilder;
+            hijriDateBuilder= new StringBuilder();
+            hijriDateBuilder.append(hijri_weekday);
+            hijriDateBuilder.append(", ");
+            hijriDateBuilder.append(hijri_day);
+            hijriDateBuilder.append(" ");
+            hijriDateBuilder.append(hijri_month);
+            hijriDateBuilder.append(" ");
+            hijriDateBuilder.append(hijri_year);
+
+            mHijriDate = findViewById(R.id.hijri_date);
+            mHijriDate.setText(hijriDateBuilder.toString());
+
             if (Passed) {
                 String[] time1 = fajr.split(":");
                 int hh1 = Integer.parseInt(time1[0].trim());
