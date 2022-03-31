@@ -382,6 +382,15 @@ public class MainActivity extends AppCompatActivity {
             String method = "1"; // University of Islamic Sciences, Karachi
             String url ="http://api.aladhan.com/v1/timingsByCity?city="+GETPrayerCity+"&country="+GETCountry+"&method="+method+offsets;
             String jsonStr = sh.makeServiceCall(url);
+
+            Calendar cal = Calendar.getInstance();
+            int hDate = cal.get(Calendar.DAY_OF_MONTH);
+            int hMonth = cal.get(Calendar.MONTH);
+            int hYear = cal.get(Calendar.YEAR);
+
+            String hUrl = "https://www.islamicfinder.org/islamic-date-converter/convertdate?day="+hDate+"&month="+hMonth+"&year="+hYear+"&dateType=Gregorian";
+            String hJsonStr = sh.makeServiceCall(hUrl);
+
             //Log.e("TAG", "Response from url: " + jsonStr);
             if (jsonStr != null) {
                 try {
@@ -396,10 +405,10 @@ public class MainActivity extends AppCompatActivity {
                     maghrib = prayertimes.getString("Maghrib");
                     isha = prayertimes.getString("Isha");
 
-                    hijri_day = hijri.getString("day");
-                    hijri_month = hijri.getJSONObject("month").getString("en");
-                    hijri_year = hijri.getString("year");
-                    hijri_weekday = hijri.getJSONObject("weekday").getString("en");
+//                    hijri_day = hijri.getString("day");
+//                    hijri_month = hijri.getJSONObject("month").getString("en");
+//                    hijri_year = hijri.getString("year");
+//                    hijri_weekday = hijri.getJSONObject("weekday").getString("en");
                     Passed =true;
                 } catch (final JSONException e) {
                     Log.e("TAG", "Json parsing error: " + e.getMessage());
@@ -416,6 +425,35 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(getApplicationContext(), getString(R.string.errorloadprayertimes), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+
+            if (hJsonStr != null) {
+                try {
+                    JSONObject hJsonObj = new JSONObject(hJsonStr);
+                    String hijri_fulldate = hJsonObj.getString("convertedDate");
+                    String[] splitDate = hijri_fulldate.split(" ");
+
+                    hijri_day = splitDate[0]; // tanggal
+                    hijri_month = splitDate[1]; // bulan
+                    hijri_year = splitDate[2]; // tahun
+                    hijri_weekday = hJsonObj.getString("convertedDay"); // hari
+                } catch (final JSONException e) {
+                    Log.e("TAG", "Json parsing error: " + e.getMessage());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), getString(R.string.errorloadhijridate), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            } else {
+                Log.e("TAG", "Could not get hijri date from server");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), getString(R.string.errorloadhijridate), Toast.LENGTH_LONG).show();
                     }
                 });
             }
