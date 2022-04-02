@@ -23,9 +23,9 @@
     <string name="incity">CIty</string>
 
     <!-- Menus Strings -->
-    <string name="app_name" translatable="false">PrayerTimes - Everyday Muslim App</string>
-    <string name="app_name_short" translatable="false">PrayerTimes 🌙</string>
-    <string name="app_desc" translatable="false">Everyday Muslim App.</string>
+    <string name="app_name" translatable="false">Minaret</string>
+    <string name="app_name_short" translatable="false">Minaret</string>
+    <string name="app_desc" translatable="false">Everyday Muslim App</string>
     <string name="city">City</string>
     <string name="location">Detect location</string>
     <string name="madina">Madina</string>
@@ -214,11 +214,12 @@
     <!--About Us Menu Strings-->
     <string name="notifications">Notifications</string>
     <string name="appversion">App Version</string>
-    <string name="version">1.3</string>
+    <string name="version">1.4-beta1</string>
     <string name="privacypolicy">Privacy Policy</string>
     <string name="reportproblem">Report Problem</string>
     <string name="givefeedback">Feedback</string>
-    <string name="developedby">Made with ❤ by Kawtar Choubari, Shaik Jaleel</string>
+    <string name="developedby" translatable="false">Made with ❤ by mitsociety.id</string>
+    <string name="original_developedby" translatable="false">Huge thanks and ❤ to Kawtar Choubari and Shaik Jaleel as original author and for inspiration. May Allah bless all of you.</string>
 
     <!-- Adkar Sabah Strings -->
     <string name="adkarsabah1" translatable="false">"أَصْـبَحْنا وَأَصْـبَحَ المُـلْكُ لله وَالحَمدُ لله ، لا إلهَ إلاّ اللّهُ وَحدَهُ لا شَريكَ لهُ، لهُ المُـلكُ ولهُ الحَمْـد، وهُوَ على كلّ شَيءٍ قدير ، رَبِّ أسْـأَلُـكَ خَـيرَ ما في هـذا اليوم وَخَـيرَ ما بَعْـدَه ، وَأَعـوذُ بِكَ مِنْ شَـرِّ ما في هـذا اليوم وَشَرِّ ما بَعْـدَه، رَبِّ أَعـوذُبِكَ مِنَ الْكَسَـلِ وَسـوءِ الْكِـبَر ، رَبِّ أَعـوذُ بِكَ مِنْ عَـذابٍ في النّـارِ وَعَـذابٍ في القَـبْر. "</string>

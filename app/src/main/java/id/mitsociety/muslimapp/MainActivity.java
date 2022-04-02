@@ -360,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences salatpref = getSharedPreferences("lastprayertimes", MODE_PRIVATE);
         String GETPrayerCity =salatpref.getString("city","Rabat");
         String GETCountry =salatpref.getString("country","Morocco");
-        int fajroff =salatpref.getInt("fajroffset",8); // default fajaroffset +8
+        int fajroff =salatpref.getInt("fajroffset",0);;
         int dhuhroff =salatpref.getInt("dhuhroffset",0);
         int asroff =salatpref.getInt("asroffset",0);
         int maghriboff =salatpref.getInt("maghriboffset",0);

@@ -9,7 +9,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="cardBackgroundColor">@color/colorPrimary</item>
         <item name="cardViewStyle">@style/AppTheme</item>
-        <item name="android:windowBackground">@drawable/bgwallpaper</item>
+        <item name="android:windowBackground">@drawable/bgwallpaper_dark</item>
     </style>
 
     <style name="AppThemee" parent="Theme.AppCompat.Light.NoActionBar">

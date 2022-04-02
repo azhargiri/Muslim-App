@@ -47,6 +47,7 @@
                 android:fontFamily="@font/changa_bold"
                 android:text="@string/app_desc"
                 android:layout_below="@id/app_title"
+                android:layout_marginLeft="80dp"
                 android:textColor="@color/colorGrey"
                 android:textSize="18sp" />
             <ImageView

@@ -55,7 +55,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:background="@color/lightblue"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:visibility="gone">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,22 +108,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/version"
-            android:textSize="18sp"
-            android:layout_marginStart="15dp"
-            android:textColor="@color/colorAccent"
-            android:shadowColor="@color/colorPrimary"
-            android:fontFamily="@font/changa_bold"
-            android:shadowDx="-2"
-            android:shadowDy="2"
-            android:shadowRadius="1"
-            android:textStyle="bold" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:fontFamily="@font/changa_bold"
             android:textSize="18sp"
             android:text="@string/appversion" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorAccent"
+            android:shadowColor="@color/colorPrimary"
+            android:fontFamily="@font/changa_bold"
+            android:textStyle="bold" />
+
     </LinearLayout>
         <TextView
             android:layout_width="match_parent"
@@ -131,6 +130,14 @@
             android:textSize="15sp"
             android:gravity="center"
             android:text="@string/developedby"
+            android:fontFamily="@font/changa_light"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:text="@string/original_developedby"
             android:fontFamily="@font/changa_light"/>
     </TableLayout>
 </ScrollView>

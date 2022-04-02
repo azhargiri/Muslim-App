@@ -118,8 +118,8 @@ public class AboutUs extends AppCompatActivity {
         mEditor.commit();
     }
     public void privacypolicy(View v) {
-        Intent intent = new Intent(this, PrivacyPolicy.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, PrivacyPolicy.class);
+//        startActivity(intent);
     }
     public  void reportProblem(View v){
         Intent intent = new Intent(this, ReportProblem.class);
