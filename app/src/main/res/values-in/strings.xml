@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< HEAD
-=======
-    <string name="app_name">PrayerTimes - Everyday Muslim App</string>
->>>>>>> 8aaf000163eb1352f4323fd354cdb47bf02b0b01
+
     <string name="city">Kota</string>
     <string name="loading">Memuat</string>
     <string name="NightMode">Mode Malam</string>
@@ -73,11 +70,8 @@
     <string name="nature1e">Doa saat hujan turun</string>
     <string name="nature2e">Doa ketika ada angin</string>
     <string name="location">Deteksi Lokasi</string>
-<<<<<<< HEAD
+
     <string name="menu_prayersettings">Pengaturan Salat</string>
-=======
-    <string name="menu_prayersettings">Pengaturan Doa</string>
->>>>>>> 8aaf000163eb1352f4323fd354cdb47bf02b0b01
     <string name="menu_azkar">Dzikir Dianjurkan</string>
     <string name="menu_wallpaper">Wallpaper</string>
     <string name="menu_widget">Widget</string>
@@ -100,11 +94,7 @@
     <string name="food3e">Petunjuk Nabi saat minum</string>
     <string name="traveldikr">Dzikir Perjalanan</string>
     <string name="travel1e">Doa Bepergian</string>
-<<<<<<< HEAD
     <string name="travel2e">Dzikir Pulang dari perjalanan</string>
-=======
-    <string name="travel2e">Pulang dari perjalanan</string>
->>>>>>> 8aaf000163eb1352f4323fd354cdb47bf02b0b01
     <string name="travel3e">Doa Musafir kepada yang Muqim</string>
     <string name="travel4e">Doa yg Muqim kepada Musafir</string>
     <string name="travel5e">Doa ketika pulang dari suatu tempat atau perjalanan</string>
@@ -141,7 +131,6 @@
     <string name="wallpaperloading">Menyimpan Wallpaper</string>
     <string name="wallpaperset">Background berhasil disimpan</string>
     <string name="restofdikr">Doa Lainnya</string>
-<<<<<<< HEAD
     <string name="savewallpaper">Apakah anda ingin menyimpan wallpaper?</string>
     <string name="leaveapp">Tinggalkan Aplikasi</string>
     <string name="leavetextmsg">Apakah anda ingin keluar dari aplikasi?</string>
@@ -172,6 +161,5 @@
     <string name="steponedetail">Tambahkan nilai uang, barang tak bergerak dan kekayaan lain yang telah anda miliki selama lebih dari setahun, kurangi dengan utang yang harus dibayar dan kewajiban lain yang harus dibayar</string>
     <string name="steptwodetail">Periksa kembali nilai emas dalam mata uang yang anda gunakan</string>
     <string name="stepthreedetail">Klik pada tombol Hitung, sebuah ringkasan akan diberikan yang memberitahukan jika anda diwajibkan membayar zakat atau tidak. Jika anda diwajibkan untuk membayar, jumlah yang harus dibayarkan akan jelas, nilai ini adalah 2,5% dari harta yang dipegang.</string>
-=======
->>>>>>> 8aaf000163eb1352f4323fd354cdb47bf02b0b01
+
 </resources>
