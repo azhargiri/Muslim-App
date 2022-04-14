@@ -25,7 +25,7 @@
     <!-- Menus Strings -->
     <string name="app_name" translatable="false">Minaret</string>
     <string name="app_name_short" translatable="false">Minaret</string>
-    <string name="app_desc" translatable="false">Everyday Muslim App</string>
+    <string name="app_desc" translatable="false">Daily Muslim Kit</string>
     <string name="city">City</string>
     <string name="location">Detect location</string>
     <string name="madina">Madina</string>
@@ -396,9 +396,7 @@
     <string name="Interstitial_Gold" translatable="false">Gold</string>
     <string name="Interstitial_Settings" translatable="false">Settings</string>
     <string name="Interstitial_BacktohomefromSettings" translatable="false">Back to home</string>
-
-
-
+    <string name="namesList">الله | الرحمن | الرحيم | الملك | القدوس | السلام | المؤمن | المهيمن | العزيز | الجبار | المتكبر | الخالق | البارئ | المصور | الغفار | القهار | الوهاب | الرزاق | الفتاح | العليم | القابض | الباسط | الخافض | الرافع | المعز | المذل | السميع | البصير | الحكم | العدل | اللطيف | الخبير | الحليم | العظيم | الغفور | الشكور | العلي | الكبير | الحفيظ | المقيت | الحسيب | الجليل | الكريم | الرقيب | المجيب | الواسع | الحكيم | الودود | المجيد | الباعث | الشهيد | الحق | الوكيل | القوي | المتين | الولي | الحميد | المحصي | المبدئ | المعيد ا المحيي | المميت | الحي | القيوم | الواجد | الماجد | الواحد | الأحد | الصمد | القادر | المقتدر | المقدم | المؤخر | الأول | الآخر | الظاهر | الباطن | الوالي | المتعالي | البر | التواب | المنتقم | العفو | الرءوف | مالك الملك | ذو الجلال والإكرام | المقسط | الجامع |الغني | المغني | المانع | الضار | النافع | النور | الهادي | البديع | الباقي | الوارث | الرشيد | الصبور |</string>
 
 
 </resources>

@@ -27,29 +27,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="1">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/lightblue"
-        android:onClick="findLocation"
-        android:padding="10dp">
-        <TextView
-            android:id="@+id/displayCity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/changa_light"
-            android:textSize="16sp"
-            android:text="Rabat, Morocco" />
-        <TextView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/changa_bold"
-            android:textSize="18sp"
-            android:text="@string/location" />
-    </LinearLayout>
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/lightblue"
+            android:orientation="vertical"
+            android:onClick="findLocation"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/displayCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/changa_light"
+                android:text="unknown"
+                android:textAlignment="viewStart"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/changa_bold"
+                android:text="@string/location"
+                android:textAlignment="textEnd"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/lightblue"
+            android:textAlignment="viewEnd">
+
+            <TextView
+                android:id="@+id/displayLatLng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:fontFamily="@font/changa_light"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"

@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 **/*/res/values/secrets.xml
+/app/release

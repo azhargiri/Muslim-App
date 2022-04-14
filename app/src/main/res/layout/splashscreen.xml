@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#98D216"
+    android:background="@color/ic_launcher_background"
+    android:theme="@style/Theme.AppCompat.NoActionBar"
     android:orientation="vertical">
 
         <ImageView

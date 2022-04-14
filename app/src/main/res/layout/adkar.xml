@@ -9,15 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp">
+
         <TextView
             android:id="@+id/douaa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Line 1"
-            android:fontFamily="@font/almushaf"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:textSize="22sp"/>
+            android:fontFamily="@font/uthmanichafs"
+            android:gravity="center"
+            android:text="Line 1"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/times"

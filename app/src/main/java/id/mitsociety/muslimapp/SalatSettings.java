@@ -46,7 +46,7 @@ public class SalatSettings extends AppCompatActivity {
     FusedLocationProviderClient mFusedLocationClient;
     double mLongitude, mLatitude;
     String mCity;
-    TextView DisplayCity, FajrOff, DuhurOff, AsrOff, MaghribOff,IshaOff;
+    TextView DisplayCity, FajrOff, DuhurOff, AsrOff, MaghribOff,IshaOff, DisplayLatLng;
 
 //    private InterstitialAd mInterstitialAd;
 
@@ -84,25 +84,35 @@ public class SalatSettings extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void initiateData(){
         SharedPreferences salatpref = getSharedPreferences("lastprayertimes", MODE_PRIVATE);
-        String GETPrayerCity =salatpref.getString("city","Rabat");
-        String GETCountry =salatpref.getString("country","Morocco");
+        String GETPrayerCity =salatpref.getString("city","");
+        String GETCountry =salatpref.getString("country","Indonesia");
+        String GETProvince =salatpref.getString("province","");
         int fajroff =salatpref.getInt("fajroffset",0);
         int dhuhroff =salatpref.getInt("dhuhroffset",0);
         int asroff =salatpref.getInt("asroffset",0);
         int maghriboff =salatpref.getInt("maghriboffset",0);
         int ishaoff =salatpref.getInt("ishaoffset",0);
+        String latitude = salatpref.getString("latitude", "");
+        String longitude = salatpref.getString("longitude", "");
+
         DisplayCity = findViewById(R.id.displayCity);
         FajrOff=findViewById(R.id.fajrcorr);
         DuhurOff=findViewById(R.id.duhurcorr);
         AsrOff=findViewById(R.id.asrcorr);
         MaghribOff=findViewById(R.id.maghrebcorr);
         IshaOff=findViewById(R.id.ishacorr);
-        DisplayCity.setText(GETPrayerCity+", "+GETCountry);
+		DisplayLatLng = findViewById(R.id.displayLatLng);
+
+        DisplayCity.setText(GETPrayerCity+", "+GETProvince+", "+GETCountry);
         FajrOff.setText(""+fajroff+getString(R.string.minutes));
         DuhurOff.setText(""+dhuhroff+getString(R.string.minutes));
         AsrOff.setText(""+asroff+getString(R.string.minutes));
         MaghribOff.setText(""+maghriboff+getString(R.string.minutes));
         IshaOff.setText(""+ishaoff+getString(R.string.minutes));
+        if (! latitude.isEmpty() && ! longitude.isEmpty()) {
+            DisplayLatLng.setText(latitude + ", " + longitude);
+        }
+
     }
 
     public void setOffsetFajr(View v){
@@ -125,7 +135,6 @@ public class SalatSettings extends AppCompatActivity {
         TextView textView = findViewById(R.id.ishacorr);
         setOffset("ishaoffset",textView);
     }
-
 
     public void setOffset(final String sharedprefkey , final TextView textview){
         Context mContext =getApplicationContext();
@@ -272,6 +281,12 @@ public class SalatSettings extends AppCompatActivity {
     public void FindCity(double MyLat, double MyLong) {
         //double MyLat = 33.97159194946289;
         //double MyLong = -6.849812984466553;
+
+		DisplayLatLng = findViewById(R.id.displayLatLng);
+		DisplayLatLng.setText(MyLat + ", " + MyLong);
+
+		DisplayLatLng = findViewById(R.id.displayLatLng);
+		DisplayLatLng.setText(MyLat + ", " + MyLong);
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         List<Address> addresses = null;
         try {
@@ -279,17 +294,22 @@ public class SalatSettings extends AppCompatActivity {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        String cityName = addresses.get(0).getLocality();
+        String provinceName = addresses.get(0).getAdminArea();
+        String cityName = addresses.get(0).getSubAdminArea();
+//        String localityName = addresses.get(0).getLocality(); // kecamatan
         String country = addresses.get(0).getCountryName();
         setCity(cityName);
-        String cityy= cityName.replace(' ', '-');
+//        String cityy= cityName.replace(' ', '-');
         SharedPreferences preff = getSharedPreferences("lastprayertimes", MODE_PRIVATE);
         SharedPreferences.Editor editor = preff.edit();
         editor.putString("country", country);
-        editor.putString("city", cityy);
+        editor.putString("province", provinceName);
+        editor.putString("city", cityName);
+        editor.putString("latitude", Double.toString(MyLat));
+        editor.putString("longitude", Double.toString(MyLong));
         editor.apply();
         DisplayCity = findViewById(R.id.displayCity);
-        DisplayCity.setText(cityy+", "+country);
+        DisplayCity.setText(cityName+", "+provinceName+", "+country);
     }
     public void setLongitude(double longitude) {
         mLongitude = longitude;

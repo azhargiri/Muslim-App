@@ -21,11 +21,27 @@ import android.widget.Toast;
 //import com.google.android.gms.ads.AdRequest;
 //import com.google.android.gms.ads.AdView;
 
+import com.batoulapps.adhan.CalculationMethod;
+import com.batoulapps.adhan.CalculationParameters;
+import com.batoulapps.adhan.Coordinates;
+import com.batoulapps.adhan.Madhab;
+import com.batoulapps.adhan.Prayer;
+import com.batoulapps.adhan.PrayerTimes;
+import com.batoulapps.adhan.data.DateComponents;
+
+import org.arabeyes.itl.hijri.ConvertedDate;
+import org.arabeyes.itl.hijri.Hijri;
+import org.arabeyes.itl.hijri.UmmAlqura;
+import org.arabeyes.itl.prayertime.Dms;
+import org.arabeyes.itl.prayertime.Method;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
         boolean firstStart = preff.getBoolean("firstStartDialog", true);
         if (firstStart) showStartDialog();
 
-        if(NetworkConnectivity.isNetworkStatusAvailable(getApplicationContext())) {
-            Toast.makeText(getApplicationContext(), getString(R.string.internetfound), Toast.LENGTH_SHORT).show();
+//        if(NetworkConnectivity.isNetworkStatusAvailable(getApplicationContext())) {
+//            Toast.makeText(getApplicationContext(), getString(R.string.internetfound), Toast.LENGTH_SHORT).show();
             new GetPrayerTimes().execute();
-        } else {
-            Toast.makeText(getApplicationContext(), getString(R.string.internetlost), Toast.LENGTH_SHORT).show();
-            LoadPreviousSalatData();
-        }
+//        } else {
+//            Toast.makeText(getApplicationContext(), getString(R.string.internetlost), Toast.LENGTH_SHORT).show();
+//            LoadPreviousSalatData();
+//        }
 
 //        mAdView = findViewById(R.id.adViewmain);
 //        AdRequest adRequest = new AdRequest.Builder()
@@ -365,6 +381,11 @@ public class MainActivity extends AppCompatActivity {
         int asroff =salatpref.getInt("asroffset",0);
         int maghriboff =salatpref.getInt("maghriboffset",0);
         int ishaoff =salatpref.getInt("ishaoffset",0);
+        Double latitude = Double.valueOf(salatpref.getString("latitude", "0.00"));
+        Double longitude = Double.valueOf(salatpref.getString("longitude", "0.00"));
+
+        PrayerTimes prayerTimes;
+
         String fajr,duhur,asr,maghrib,isha;
         String hijri_weekday, hijri_day, hijri_month, hijri_year;
         Boolean Passed=false;
@@ -375,94 +396,127 @@ public class MainActivity extends AppCompatActivity {
         }
         @Override
         protected Void doInBackground(Void... arg0) {
-            HttpHandler sh = new HttpHandler();
+//            HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
             //String url = "https://api.pray.zone/v2/times/today.json?city="+GETPrayerCity;
-            String offsets = "&tune=0,"+(fajroff)+",0,"+(dhuhroff)+","+asroff+","+(maghriboff)+",0,"+ishaoff+",0" ;
-            String method = "1"; // University of Islamic Sciences, Karachi
-            String url ="http://api.aladhan.com/v1/timingsByCity?city="+GETPrayerCity+"&country="+GETCountry+"&method="+method+offsets;
-            String jsonStr = sh.makeServiceCall(url);
+//            String offsets = "&tune=0,"+(fajroff)+",0,"+(dhuhroff)+","+asroff+","+(maghriboff)+",0,"+ishaoff+",0" ;
+//            String method = "1"; // University of Islamic Sciences, Karachi
+//            String url ="http://api.aladhan.com/v1/timingsByCity?city="+GETPrayerCity+"&country="+GETCountry+"&method="+method+offsets;
+//            String jsonStr = sh.makeServiceCall(url);
 
             Calendar cal = Calendar.getInstance();
             int hDate = cal.get(Calendar.DAY_OF_MONTH);
             int hMonth = cal.get(Calendar.MONTH);
             int hYear = cal.get(Calendar.YEAR);
+//            int hhMonth = hMonth + 1;
 
-            String hUrl = "https://www.islamicfinder.org/islamic-date-converter/convertdate?day="+hDate+"&month="+hMonth+"&year="+hYear+"&dateType=Gregorian";
-            String hJsonStr = sh.makeServiceCall(hUrl);
+//            String hUrl = "https://www.islamicfinder.org/islamic-date-converter/convertdate?day="+hDate+"&month="+hMonth+"&year="+hYear+"&dateType=Gregorian";
+//            String hJsonStr = sh.makeServiceCall(hUrl);
+//            Log.d("prayertimes", hUrl);
+
+            Coordinates coordinates = new Coordinates(latitude, longitude);
+//            Log.d("prayertimes", latitude.toString() + ", " + longitude.toString());
+            CalculationParameters params = CalculationMethod.KARACHI.getParameters();
+            params.madhab = Madhab.SHAFI;
+            DateComponents date = DateComponents.from(cal.getTime());
+
+            prayerTimes = new PrayerTimes(coordinates, date, params);
+//
+//            Log.d("prayertimes", "Tanggal " + hDate + " " + hMonth + " " + hYear);
+//            Log.d("prayertimes", "Coordinates in bg " + coordinates.latitude + " " + coordinates.longitude);
+//            Log.d("prayertimes", "Current Prayer in bg " + prayerTimes.currentPrayer());
+//            Log.d("prayertimes", "Current Prayer in bg " + prayerTimes.isha.getTime());
+
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+
+            fajr = formatter.format(prayerTimes.fajr);
+            duhur = formatter.format(prayerTimes.dhuhr);
+            asr = formatter.format(prayerTimes.asr);
+            maghrib = formatter.format(prayerTimes.maghrib);
+            isha = formatter.format(prayerTimes.isha);
 
             //Log.e("TAG", "Response from url: " + jsonStr);
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-                    JSONObject data = jsonObj.getJSONObject("data");
-                    JSONObject prayertimes = data.getJSONObject("timings");
-                    JSONObject date = data.getJSONObject("date");
-                    JSONObject hijri = date.getJSONObject("hijri");
-                    fajr = prayertimes.getString("Fajr");
-                    duhur = prayertimes.getString("Dhuhr");
-                    asr = prayertimes.getString("Asr");
-                    maghrib = prayertimes.getString("Maghrib");
-                    isha = prayertimes.getString("Isha");
+//            if (jsonStr != null) {
+//                try {
+//                    JSONObject jsonObj = new JSONObject(jsonStr);
+//                    JSONObject data = jsonObj.getJSONObject("data");
+//                    JSONObject prayertimes = data.getJSONObject("timings");
+//                    JSONObject date = data.getJSONObject("date");
+//                    JSONObject hijri = date.getJSONObject("hijri");
+//                    fajr = prayertimes.getString("Fajr");
+//                    duhur = prayertimes.getString("Dhuhr");
+//                    asr = prayertimes.getString("Asr");
+//                    maghrib = prayertimes.getString("Maghrib");
+//                    isha = prayertimes.getString("Isha");
 
-//                    hijri_day = hijri.getString("day");
-//                    hijri_month = hijri.getJSONObject("month").getString("en");
-//                    hijri_year = hijri.getString("year");
-//                    hijri_weekday = hijri.getJSONObject("weekday").getString("en");
-                    Passed =true;
-                } catch (final JSONException e) {
-                    Log.e("TAG", "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(), getString(R.string.errorloadprayertimes), Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
-            } else {
-                Log.e("TAG", "Couldn't get json from server.");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), getString(R.string.errorloadprayertimes), Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
+//                    SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+//
+//                    fajr = formatter.format(prayerTimes.fajr);
+//                    duhur = formatter.format(prayerTimes.dhuhr);
+//                    asr = formatter.format(prayerTimes.asr);
+//                    maghrib = formatter.format(prayerTimes.maghrib);
+//                    isha = formatter.format(prayerTimes.isha);
+//
+////                    hijri_day = hijri.getString("day");
+////                    hijri_month = hijri.getJSONObject("month").getString("en");
+////                    hijri_year = hijri.getString("year");
+////                    hijri_weekday = hijri.getJSONObject("weekday").getString("en");
+//                    Passed =true;
+//                } catch (final JSONException e) {
+//                    Log.e("TAG", "Json parsing error: " + e.getMessage());
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(getApplicationContext(), getString(R.string.errorloadprayertimes), Toast.LENGTH_LONG).show();
+//                        }
+//                    });
+//                }
+//            } else {
+//                Log.e("TAG", "Couldn't get json from server.");
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(getApplicationContext(), getString(R.string.errorloadprayertimes), Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//            }
 
-            if (hJsonStr != null) {
-                try {
-                    JSONObject hJsonObj = new JSONObject(hJsonStr);
-                    String hijri_fulldate = hJsonObj.getString("convertedDate");
-                    String[] splitDate = hijri_fulldate.split(" ");
+//            if (hJsonStr != null) {
+//                try {
+//                    JSONObject hJsonObj = new JSONObject(hJsonStr);
+//                    String hijri_fulldate = hJsonObj.getString("convertedDate");
+//                    String[] splitDate = hijri_fulldate.split(" ");
 
-                    hijri_day = splitDate[0]; // tanggal
-                    hijri_month = splitDate[1]; // bulan
-                    hijri_year = splitDate[2]; // tahun
-                    hijri_weekday = hJsonObj.getString("convertedDay"); // hari
-                } catch (final JSONException e) {
-                    Log.e("TAG", "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(), getString(R.string.errorloadhijridate), Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
-            } else {
-                Log.e("TAG", "Could not get hijri date from server");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), getString(R.string.errorloadhijridate), Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
+                    ConvertedDate hijriDate = HijraCalendar.fromGregorian(latitude, longitude, cal.getTime(), java.util.Locale.getDefault());
+
+                    hijri_day = hijriDate.format("d"); // tanggal
+                    hijri_month = hijriDate.format("MMMM"); // bulan
+                    hijri_year = hijriDate.format("yyyy"); // tahun
+                    hijri_weekday = hijriDate.format("EEEE"); // hari
+//                } catch (final JSONException e) {
+//                    Log.e("TAG", "Json parsing error: " + e.getMessage());
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(getApplicationContext(), getString(R.string.errorloadhijridate), Toast.LENGTH_LONG).show();
+//                        }
+//                    });
+//                }
+//            } else {
+//                Log.e("TAG", "Could not get hijri date from server");
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(getApplicationContext(), getString(R.string.errorloadhijridate), Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//            }
             return null;
         }
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            Toast.makeText(getApplicationContext(), getString(R.string.prayertimesloaded), Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), getString(R.string.prayertimesloaded), Toast.LENGTH_LONG).show();
             SharedPreferences salatpref = getSharedPreferences("lastprayertimes", MODE_PRIVATE);
             SharedPreferences.Editor editor = salatpref.edit();
            // editor.putString("city", GETPrayerCity);
@@ -486,6 +540,34 @@ public class MainActivity extends AppCompatActivity {
             mMaghrib.setText(maghrib);
             mIsha.setText(isha);
 
+            mFajr.setBackgroundColor(0);
+            mDuhur.setBackgroundColor(0);
+            mAsr.setBackgroundColor(0);
+            mMaghrib.setBackgroundColor(0);
+            mIsha.setBackgroundColor(0);
+
+            Integer bgColor = 0x9956EE0F;
+
+			switch(prayerTimes.currentPrayer()) {
+                case FAJR:
+                    mFajr.setBackgroundColor(bgColor);
+					break;
+				case DHUHR:
+					mDuhur.setBackgroundColor(bgColor);
+					break;
+				case ASR:
+					mAsr.setBackgroundColor(bgColor);
+					break;
+				case MAGHRIB:
+					mMaghrib.setBackgroundColor(bgColor);
+					break;
+				case ISHA:
+					mIsha.setBackgroundColor(bgColor);
+					break;
+                default:
+                    break;
+			}
+
             StringBuilder hijriDateBuilder;
             hijriDateBuilder= new StringBuilder();
             hijriDateBuilder.append(hijri_weekday);
@@ -499,31 +581,30 @@ public class MainActivity extends AppCompatActivity {
             mHijriDate = findViewById(R.id.hijri_date);
             mHijriDate.setText(hijriDateBuilder.toString());
 
-            if (Passed) {
-                String[] time1 = fajr.split(":");
-                int hh1 = Integer.parseInt(time1[0].trim());
-                int mm1 = Integer.parseInt(time1[1].trim());
-                String[] time2 = duhur.split(":");
-                int hh2 = Integer.parseInt(time2[0].trim());
-                int mm2 = Integer.parseInt(time2[1].trim());
-                String[] time3 = asr.split(":");
-                int hh3 = Integer.parseInt(time3[0].trim());
-                int mm3 = Integer.parseInt(time3[1].trim());
-                String[] time4 = maghrib.split(":");
-                int hh4 = Integer.parseInt(time4[0].trim());
-                int mm4 = Integer.parseInt(time4[1].trim());
-                String[] time5 = isha.split(":");
-                int hh5 = Integer.parseInt(time5[0].trim());
-                int mm5 = Integer.parseInt(time5[1].trim());
 
-                scheduleNotification(getApplicationContext(), 10, hh1, mm1);
-                scheduleNotification(getApplicationContext(), 11, hh3, mm3);
-                scheduleNotification(getApplicationContext(), 1, hh1, mm1);
-                scheduleNotification(getApplicationContext(), 2, hh2, mm2);
-                scheduleNotification(getApplicationContext(), 3, hh3, mm3);
-                scheduleNotification(getApplicationContext(), 4, hh4, mm4);
-                scheduleNotification(getApplicationContext(), 5, hh5, mm5);
-            }
+            String[] time1 = fajr.split(":");
+            int hh1 = Integer.parseInt(time1[0].trim());
+            int mm1 = Integer.parseInt(time1[1].trim());
+            String[] time2 = duhur.split(":");
+            int hh2 = Integer.parseInt(time2[0].trim());
+            int mm2 = Integer.parseInt(time2[1].trim());
+            String[] time3 = asr.split(":");
+            int hh3 = Integer.parseInt(time3[0].trim());
+            int mm3 = Integer.parseInt(time3[1].trim());
+            String[] time4 = maghrib.split(":");
+            int hh4 = Integer.parseInt(time4[0].trim());
+            int mm4 = Integer.parseInt(time4[1].trim());
+            String[] time5 = isha.split(":");
+            int hh5 = Integer.parseInt(time5[0].trim());
+            int mm5 = Integer.parseInt(time5[1].trim());
+
+            scheduleNotification(getApplicationContext(), 10, hh1, mm1);
+            scheduleNotification(getApplicationContext(), 11, hh3, mm3);
+            scheduleNotification(getApplicationContext(), 1, hh1, mm1);
+            scheduleNotification(getApplicationContext(), 2, hh2, mm2);
+            scheduleNotification(getApplicationContext(), 3, hh3, mm3);
+            scheduleNotification(getApplicationContext(), 4, hh4, mm4);
+            scheduleNotification(getApplicationContext(), 5, hh5, mm5);
         }
     }
 

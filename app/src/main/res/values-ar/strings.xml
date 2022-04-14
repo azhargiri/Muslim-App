@@ -23,8 +23,8 @@
     <string name="incity">بمدينة</string>
 
     <!-- Menus Strings -->
-    <string name="app_name">حصن المسلم</string>
-    <string name="app_desc">التطبيق اليومي لكل مسلم</string>
+    <string name="app_name">مئذنة</string>
+    <string name="app_desc">طقم المسلم اليومي</string>
     <string name="city">City</string>
     <string name="location">تحديد الموقع</string>
     <string name="madina">المدينة</string>
